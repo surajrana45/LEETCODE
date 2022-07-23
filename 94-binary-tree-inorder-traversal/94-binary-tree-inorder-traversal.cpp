@@ -12,28 +12,24 @@
 class Solution {
 public:
     
-    void inorderhelper(TreeNode*root,vector<int>&v)
+    void inorderHeplper(TreeNode*root,vector<int>&v)
     {
-        if(root==NULL)
+        if(root == NULL)
+        {
             return;
-        
-        inorderhelper(root->left,v);
+        }
+        inorderHeplper(root->left,v);
         v.push_back(root->val);
-        inorderhelper(root->right,v);    
+        inorderHeplper(root->right,v);
     }
     
     
-    
-    
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int>v;
-         
-        inorderhelper(root,v);
+        
+        vector<int> v;
+        inorderHeplper(root,v);
         
         return v;
-        
-        
-        
-        
+       
     }
 };
