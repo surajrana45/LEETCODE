@@ -2,19 +2,22 @@ class Solution {
 public:
     bool isIsomorphic(string s, string t) {
         
-       int indS[129] = {0};
+        if(s.length() != t.length())
+            return false;
         
-       int indT[129] = {0};
-       
-       for(int i=0;i<s.length();i++)
-       {
-           if(indS[s[i]] != indT[t[i]])
+        map<char,int>mp1;
+        map<char,int>mp2;
+        
+        for(int i =0;i<s.length();i++)
+        {
+           if(mp1[s[i]] != mp2[t[i]])
                return false;
-           
-           indS[s[i]] = indT[t[i]] = i+1;
-       }
+            
+            mp1[s[i]] = mp2[t[i]] = i+1;
+        }
         
         return true;
         
+       
     }
 };
