@@ -19,17 +19,14 @@ public:
         if(list2 == NULL)
             return list1;
         
-        
-        // ListNode*tail1 = list1;
-        // ListNode*tail2 = list2;
         ListNode*head = NULL;
         ListNode*tail = head;
         
-        if(list1->val < list2->val)
+        if(list1->val<list2->val)
         {
             head = list1;
             tail = list1;
-            list1=list1->next;
+            list1 = list1->next;
         }
         else
         {
@@ -38,33 +35,29 @@ public:
             list2 = list2->next;
         }
         
-        while(list1 != NULL && list2 != NULL)
+        while(list1 && list2)
         {
-            if(list1->val < list2->val)
+            if(list1->val<list2->val)
             {
-               tail->next = list1;
+                tail->next = list1;
                 list1 = list1->next;
-                tail = tail->next;
             }
             else
             {
                 tail->next = list2;
                 list2 = list2->next;
-                tail = tail->next;
             }
-        }
-        if(list1 == NULL)
-        {
-            tail->next = list2;
-            tail = tail->next;
-        }
-        else
-        {
-            tail->next = list1;
             tail = tail->next;
         }
         
+        if(list1 == NULL)
+        {
+            tail->next = list2;
+        }
+        else{
+            tail->next = list1;
+        }
+        
         return head;
-       
     }
 };
