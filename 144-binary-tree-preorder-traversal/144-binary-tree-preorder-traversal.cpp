@@ -20,8 +20,11 @@ public:
         
         v.push_back(root->val);
         
-        helper(root->left,v);
-        helper(root->right,v);
+        if(root->left)
+           helper(root->left,v);
+        
+        if(root->right)
+           helper(root->right,v);
     }
     
     vector<int> preorderTraversal(TreeNode* root) {
