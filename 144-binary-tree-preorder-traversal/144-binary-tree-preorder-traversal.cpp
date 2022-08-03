@@ -14,9 +14,8 @@ public:
     
     void helper(TreeNode*root,vector<int>&v)
     {
-         if(root == NULL)
-            return ;
-        
+         
+        if(root){
         
         v.push_back(root->val);
         
@@ -25,6 +24,8 @@ public:
         
         if(root->right)
            helper(root->right,v);
+        }
+        return;
     }
     
     vector<int> preorderTraversal(TreeNode* root) {
