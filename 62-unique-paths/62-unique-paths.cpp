@@ -1,39 +1,43 @@
 class Solution {
 public:
     
-    int helper(int**grid,int m,int n,int i,int j)
+    int helper(int**arr,int m,int n,int i,int j)
     {
-        if(i == m-1 && j == n-1)
-            return 1;
         
-        if(i>=m || j>=n)
-            return 0;
+       for(int k=0;k<m;k++)
+       {
+           for(int l = 0;l<n;l++)
+           {
+               if(k ==m-1 || l==n-1)
+                   arr[k][l] = 1;
+           }
+       }
         
-        if(grid[i][j] != -1)
-            return grid[i][j];
+        for(int k=m-2;k>=0;k--)
+        {
+            for(int l = n-2;l>=0;l--)
+                arr[k][l] = (arr[k][l+1]+arr[k+1][l]);
+        }
         
-        int right = helper(grid,m,n,i,j+1);
-        int down = helper(grid,m,n,i+1,j);
+        return arr[0][0];
         
-        int ans = right+down;
-        grid[i][j] = ans;
         
-        return ans;
     }
     
     
     int uniquePaths(int m, int n) {
         
-        int**grid = new int*[m];
+        int **arr = new int*[m];
         for(int i=0;i<m;i++)
         {
-            grid[i] = new int[n];
-            for(int j = 0;j<n;j++)
+            arr[i] = new int[n];
+            for(int j=0;j<n;j++)
             {
-                grid[i][j] = -1;
+                arr[i][j] = -1;
             }
         }
         
-        return helper(grid,m,n,0,0);
+        int ans = helper(arr,m,n,0,0);
+        return ans;
     }
 };
