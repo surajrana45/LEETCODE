@@ -10,12 +10,8 @@ public:
             if(nums[j] != 0){
                 swap(nums[i],nums[j]);
                 i++;
-                j++;
             }
-            else
-            {
-                j++;
-            }
+           j++;
             
         }
     }
