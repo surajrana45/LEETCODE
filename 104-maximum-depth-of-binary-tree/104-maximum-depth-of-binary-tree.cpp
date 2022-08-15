@@ -16,14 +16,6 @@ public:
         if(root == NULL)
             return 0;
         
-        int lans = 0;
-        int rans = 0;
-        
-        if(root->left)
-            lans = maxDepth(root->left);
-        if(root->right)
-            rans = maxDepth(root->right);
-        
-        return 1+max(lans,rans);
+        return max(maxDepth(root->left), maxDepth(root->right))+1;
     }
 };
