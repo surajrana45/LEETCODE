@@ -1,33 +1,25 @@
 class Solution {
 public:
     
-    int helper(int*arr,int n)
+    int fib_helper(int n)   
     {
         if(n<=1)
             return n;
         
-        if(arr[n] != -1)
-            return arr[n];
+        int *ans = new int[n+1];
+        ans[0] = 0;
+        ans[1] = 1;
         
-        int a = helper(arr,n-1);
-        int b = helper(arr,n-2);
+        for(int i=2;i<=n;i++)
+        {
+            ans[i] = ans[i-1]+ans[i-2];
+        }
         
-        arr[n] = a+b;
-        return arr[n];
+        return ans[n];
     }
-    
     
     int fib(int n) {
         
-        int *arr = new int[n+1];
-        
-        for(int i =0;i<=n;i++)
-        {
-            arr[i] = -1;
-        }
-        
-        int ans = helper(arr,n);
-        
-        return ans;
+        return fib_helper(n);
     }
 };
