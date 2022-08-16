@@ -1,31 +1,37 @@
 class Solution {
 public:
     
-    int helper(vector<int>v,int s,int* arr)
+    int helper(vector<int>&v,int ind,int*ans)
     {
-        if(s >= v.size())
+        if(ind >= v.size())
+        {
             return 0;
+        }
         
-        if(arr[s]!=-1)
-            return arr[s];
+        if(ans[ind] != -1)
+            return ans[ind];
         
         
-        arr[s] = (v[s]+min(helper(v,s+1,arr),helper(v,s+2,arr)));
-        return arr[s];
-    }
     
+        int a = v[ind]+helper(v,ind+1,ans);
+        int b = v[ind]+helper(v,ind+2,ans);  
+        
+        ans[ind] = min(a,b);
+        return min(a,b);
+        
+    }
     
     int minCostClimbingStairs(vector<int>& cost) {
         
-        int *arr = new int[cost.size()];
-        for(int i =0;i<cost.size();i++)
+        int*ans = new int[cost.size()+1];
+        for(int i=0;i<=cost.size();i++)
         {
-            arr[i] = -1;
+            ans[i] = -1;
         }
         
-        int ans = helper(cost,0,arr);
-        int ans1= helper(cost,1,arr);
+        int a = helper(cost,0,ans);
+        int b = helper(cost,1,ans);
         
-        return min(ans,ans1);
+        return min(a,b);
     }
 };
