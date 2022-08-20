@@ -3,15 +3,15 @@ public:
     vector<int> getRow(int rowIndex) {
         
         vector<vector<int>>ans;
-        ans.push_back({1});
-        if(rowIndex == 0)
-            return ans[0];
-        ans.push_back(vector<int>{1,1});
-        if(rowIndex==1)
-            return ans[1];
+//         ans.push_back({1});
+//         if(rowIndex == 0)
+//             return ans[0];
+//         ans.push_back(vector<int>{1,1});
+//         if(rowIndex==1)
+//             return ans[1];
         
         
-        for(int i=2;i<=rowIndex;i++)
+        for(int i=0;i<=rowIndex;i++)
         {
             vector<int>temp;
             for(int j=0;j<=i;j++)
