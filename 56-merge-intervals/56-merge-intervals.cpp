@@ -1,39 +1,43 @@
 class Solution {
 public:
     
-    static bool cmp(vector<int>a,vector<int>b)
-    {
-        return a[0]<b[0];
-    }
-    
+  
     
     vector<vector<int>> merge(vector<vector<int>>& v) {
         
-        sort(v.begin(),v.end(),cmp);
+        if(v.size()==1)
+            return v;
+        
+        sort(v.begin(),v.end());
         vector<vector<int>>ans;
         int i=0;
          
-        int mini = v[i][0];
-        int maxi = v[i][1];
-        i=1;
-        while(i<v.size())
+        vector<int>temp;
+        temp.push_back(v[0][0]);
+        temp.push_back(v[0][1]);
+        
+       for(i=1;i<v.size();i++)
+       { 
+           if(temp[1]>=v[i][0])
+           {
+               temp[1] = max(temp[1],v[i][1]);
+               
+               
+           }
+           else
+           {
+               ans.push_back(temp);
+               temp.clear();
+               temp.push_back(v[i][0]);
+               temp.push_back(v[i][1]);
+               
+           }
+           
+       }
+        if(temp[1]>=v[i-1][0])
         {
-            if(maxi>=v[i][0]){
-             
-                maxi = max(maxi,v[i][1]);
-                i++;
-            }
-            else
-            {
-                ans.push_back(vector<int>{mini,maxi});
-                mini=v[i][0];
-                maxi = v[i][1];
-                i++;
-            }
+            ans.push_back(temp);
         }
-        ans.push_back(vector<int>{mini,maxi});
-        
-        
         return ans;
     }
 };
