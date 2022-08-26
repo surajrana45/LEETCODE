@@ -2,7 +2,7 @@ class Solution {
 public:
     int reverse(int x) {
        
-         if(x>=2147483647 || x<=-2147483648)
+        if(x>=(pow(2,31)-1) || x<=pow(-2,31))
            return 0;
         
         long long temp = 0;
