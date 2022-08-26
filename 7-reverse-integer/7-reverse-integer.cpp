@@ -1,41 +1,55 @@
 class Solution {
 public:
     int reverse(int x) {
-       
-        if(x>=(pow(2,31)-1) || x<=pow(-2,31))
-           return 0;
+        long long s=0;
         
-        long long temp = 0;
+        if(x>pow(-2,31)&& x<(pow(2,31))-1)
+        {    
         
-        if(x>0){
-        while(x != 0)
-        {
-            int rem = x%10;
-            temp=temp*10+rem;
-            
-            if((temp>=(pow(2,31)-1)) || temp<=pow(-2,31))
-                return 0;
-            
-            x = x/10;
+            if(x<0)
+            {
+                x=((-1)*x);
+                while(x>0)
+                {
+                    
+                   int rem=x%10; 
+                    x=x/10;
+                    s=s*10+rem;
+                    if((s>=(pow(2,31))-1) || s<=pow(-2,31))
+                    {
+                           return 0;
+                    }
+                    
+               }
+               s=((-1)*s);
+            }
+
+        
+            else
+            {
+                while(x!=0)
+                {
+                    int rem=x%10;
+                    s=s*10+rem;
+                    if((s>=(pow(2,31))) || s<=pow(-2,31))
+                    {
+                           return 0;
+                    }
+                    x=x/10;
+                }
+                
+
+            }
         }
+        else{
+            return 0;
         }
-       
-       else
-        {
-            x=-1*x;
-            while(x>0)
-        {
-           
-            int rem = x%10;
-            x = x/10;
-            temp = temp*10+rem;
-          
-            if((temp>=(pow(2,31)-1)) || temp<=pow(-2,31))
-                return 0;   
-        }
-       temp=-1*temp;     
-    }
-       
-        return int(temp);
+             
+             
+        
+        
+        
+        return int(s);
+        
     }
 };
