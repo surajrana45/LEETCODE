@@ -17,7 +17,7 @@ public:
             i--;
             j--;
         }
-        cout<<ans;
+
         while(i>=0)
         {
             int temp = (a[i]-'0')+carry;
@@ -26,7 +26,8 @@ public:
             carry = temp/2;
             i--;
         }
-         while(j>=0)
+        
+        while(j>=0)
         {
             int temp = (b[j]-'0')+carry;
             int x = temp%2;
