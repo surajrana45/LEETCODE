@@ -23,12 +23,13 @@ public:
             head=head->next;
         }
         
-        head=NULL;
-        ListNode*tail = NULL;
+         head=NULL;
+         ListNode*tail = NULL;
         
-        for(auto it:mp){
-
-            ListNode*temp = new ListNode(it.first);
+        for(auto it:mp)
+        {
+            ListNode*temp = new ListNode(it.first); 
+            
             if(it.second == 1)
             {
                 if(head == NULL)
@@ -36,17 +37,18 @@ public:
                     head = temp;
                     tail = temp;
                 }
-                else{
+                
+                else
+                {
                     tail->next = temp;
                     tail = temp;
                 }
-            }
-        }
-    return head;
-    }
-    
+                
+              }
+            
+           } 
         
-     
-        
+        return head;
     
+    }    
 };
