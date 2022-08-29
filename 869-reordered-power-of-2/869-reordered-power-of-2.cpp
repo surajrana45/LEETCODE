@@ -11,12 +11,9 @@ public:
         {
             int temp = pow(2,i);
             v.push_back(to_string(temp));
-        }
-        
-        for(int i=0;i<=30;i++)
-        {
             sort(v[i].begin(),v[i].end());
         }
+        
         
         for(int i=0;i<=30;i++)
         {
