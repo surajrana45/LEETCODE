@@ -18,8 +18,8 @@ public:
         q.push(root);
         q.push(NULL);
         
-        int avg = 0;
-        int cnt = 0;
+        int Divisor = 0;
+        int count = 0;
         while(!q.empty())
         {
             TreeNode*Front = q.front();
@@ -27,20 +27,22 @@ public:
             
             if(Front == NULL)
             {
-                 cnt++;
-                if(cnt>1)
+                 count++;
+                
+                if(count>1)
                     break;
-                ans.push_back(sum/avg);
+                
+                ans.push_back(sum/Divisor);
                 sum=0;
                 q.push(NULL);
-                avg = 0;
-               
-                
+                Divisor = 0;  
             }
             else{
-            avg++;
-            cnt = 0;
+                
+            Divisor++;
+            count = 0;
             sum = sum+Front->val;
+                
             if(Front->left)
                 q.push(Front->left);
             if(Front->right)
@@ -53,9 +55,7 @@ public:
     
     vector<double> averageOfLevels(TreeNode* root) {
         
-       
         vector<double>ans;
-        //ans.push_back(root->val);
         double sum = 0;
         helper(root,ans,sum);
         
