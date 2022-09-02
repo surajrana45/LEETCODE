@@ -28,8 +28,7 @@ public:
     
     TreeNode* sortedArrayToBST(vector<int>& nums) {
         
-       // int mid = nums.size()/2;
-        
+  
         TreeNode*root = helper(nums,0,nums.size()-1);
         return root;
     }
