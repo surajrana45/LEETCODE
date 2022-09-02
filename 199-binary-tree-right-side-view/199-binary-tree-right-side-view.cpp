@@ -9,42 +9,29 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-#include<queue>
 class Solution {
 public:
     
     void helper(TreeNode*root,vector<int>&ans,int k)
     {
-        if(root==NULL)
+        if(root == NULL)
             return;
-        queue<TreeNode*>rightView;
-        rightView.push(root);
-        while(!rightView.empty())
-        {
-            TreeNode*Front = rightView.front();
-            ans.push_back(Front->val);
-           // rightView.pop();
-            
-            for(int i=rightView.size();i>0;i--)
-            {
-                Front = rightView.front();
-                rightView.pop();
-                if(Front->right)
-                    rightView.push(Front->right);
-                if(Front->left)
-                    rightView.push(Front->left);
-            }
-        }
-    }
-    
         
+        if(ans.size() == k)
+            ans.push_back(root->val);
+        
+        if(root->right)
+            helper(root->right,ans,k+1);
+        if(root->left)
+            helper(root->left,ans,k+1);  
+    }
     
     
     vector<int> rightSideView(TreeNode* root) {
-        if(root==NULL)
-            return{};
+        
         vector<int>ans;
-       helper(root,ans,1);
-       return ans;
+        helper(root,ans,0);
+        
+        return ans;
     }
 };
