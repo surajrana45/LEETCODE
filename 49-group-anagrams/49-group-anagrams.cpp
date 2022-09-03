@@ -9,12 +9,7 @@ public:
             string s = strs[i];
             sort(s.begin(),s.end());
             
-            if(mp.find(s) != mp.end())
-            {
-                mp[s].push_back(strs[i]);
-            }
-            else
-              mp[s].push_back(strs[i]);
+            mp[s].push_back(strs[i]);
         }
         
         vector<vector<string>>ans;
