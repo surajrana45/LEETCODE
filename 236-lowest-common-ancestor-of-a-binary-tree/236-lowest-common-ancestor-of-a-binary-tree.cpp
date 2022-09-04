@@ -13,19 +13,22 @@ public:
         
         if(root == NULL)
             return NULL;
-        
+       
         if(root->val == p->val || root->val == q->val)
             return root;
         
-        TreeNode*lcal = lowestCommonAncestor(root->left,p,q);
-        TreeNode*lcar = lowestCommonAncestor(root->right,p,q);
+        TreeNode*left = lowestCommonAncestor(root->left,p,q);
+        TreeNode*right = lowestCommonAncestor(root->right,p,q);
         
-        if(lcal != NULL && lcar != NULL)
+        if(left != NULL && right != NULL)
             return root;
         
-        else if(lcal != NULL)
-            return lcal;
-        else
-            return lcar;
+        if(left != NULL)
+            return left;
+        
+        if(right != NULL)
+            return right;
+        
+        return NULL;
     }
 };
