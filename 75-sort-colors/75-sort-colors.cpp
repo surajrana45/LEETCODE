@@ -8,19 +8,18 @@ public:
         
         while(j<=k)
         {
-            if(nums[j] == 0){
-                swap(nums[i],nums[j]);
-                i++;
-            }
-            if(nums[j] == 2)
-            {
-                swap(nums[j],nums[k]);
-                k--;
-            }
-            else
-                j++;
+          if(nums[j] == 2){
+              swap(nums[j],nums[k]);
+              k--;
+          }
+         else if(nums[j] == 0)
+           {
+               swap(nums[j],nums[i]);
+               i++; 
+              j++;
+           }
+           else 
+               j++;
         }
-        
-        
     }
 };
