@@ -31,24 +31,24 @@ public:
             if(count == total)
                 break;
             
-            if(right>=left){
+           // if(right>=left){
             for(int i=right;i>=left;i--)
             {
                 count++;
                 ans.push_back(matrix[bottom][i]);
             }
-            }
+           // }
             bottom--;
             if(count == total)
                 break;
             
-            if(bottom>=top){
+           // if(bottom>=top){
             for(int i=bottom;i>=top;i--)
             {
                 count++;
                 ans.push_back(matrix[i][left]);
             }
-            }
+           // }
             left++;
             if(count == total)
                 break;
