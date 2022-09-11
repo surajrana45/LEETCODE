@@ -2,24 +2,28 @@ class Solution {
 public:
     bool isHappy(int n) {
         
-        unordered_set<int>s;
+    
+        unordered_map<int,int>mp;
         
-        while(n!=1)
+        while(1)
         {
-            if(s.find(n) == s.end())
-                s.insert(n);
-            else
-                return false;
-            
-            int sum = 0;
+           if(mp.find(n)!=mp.end())
+           {
+               return false;
+           }
+            mp[n]++;
+            int temp = 0;
             while(n)
             {
-                sum += pow(n%10,2);
-                n=n/10;
+                int r = n%10;
+                n = n/10;
+                temp = temp+(r*r);
             }
-            n = sum;
+            n = temp;
+            if(n == 1)
+                break;
+            
         }
         return true;
-       
     }
 };
