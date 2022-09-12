@@ -12,12 +12,12 @@ public:
         
        int ans = -1;
         if(v.size()==0) return 0; 
-       vector<int> prev= v[0];
+       int mini = v[0][1];
 
 		for(vector<int> i:v) {
-			if(prev[1]>i[0]) {
-				ans++;                //we dont update previous, because i[1] will be grater 
-			}else prev=i;           // we want the end point to be minimum
+			if(mini>i[0]) {
+				ans++;                
+			}else mini=i[1];        
 		}
 		return ans;     
     
