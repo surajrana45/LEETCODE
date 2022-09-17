@@ -23,32 +23,38 @@ public:
     }
     
     
-    void helper(vector<string>&ans,int n)
+    void helper(vector<string>&ans,int n,string res)
     {
         if(n == 0)
         {
-            ans.push_back("");
+            ans.push_back(res);
             return;
         }
         int r = n%10;
         n = n/10;
-        helper(ans,n);
+        //helper(ans,n);
         string str = getS(r);
-        int l = ans.size();
-        for(int i=0;i<str.length()-1;i++)
+        
+        for(int i=0;i<str.size();i++)
         {
-            for(int j=0;j<l;j++)
-                ans.push_back(ans[j]);
+            helper(ans,n,str[i]+res);
         }
-        int k =0 ;
-        for(int i = 0;i<str.length();i++)
-        {
-            for(int j=0;j<l;j++)
-            {
-                ans[k].push_back(str[i]);
-                k++;
-            }
-        }
+        
+        // int l = ans.size();
+        // for(int i=0;i<str.length()-1;i++)
+        // {
+        //     for(int j=0;j<l;j++)
+        //         ans.push_back(ans[j]);
+        // }
+        // int k =0 ;
+        // for(int i = 0;i<str.length();i++)
+        // {
+        //     for(int j=0;j<l;j++)
+        //     {
+        //         ans[k].push_back(str[i]);
+        //         k++;
+        //     }
+        // }
     }
     
     
@@ -56,9 +62,9 @@ public:
         if(digits == "")
             return {};
         int n = stoi(digits);
-       // int l = digits.length();
+      
         vector<string>ans;
-        helper(ans,n);
+        helper(ans,n,"");
         return ans;
     }
 };
