@@ -1,24 +1,18 @@
 class Solution {
 public:
     
-    void helper(vector<int>nums,vector<vector<int>>&ans,vector<int>temp,map<int,int>mp)
+    void helper(vector<int>nums,vector<vector<int>>&ans,int ind)
     {
-        if(temp.size() == nums.size())
+        if(ind >= nums.size())
         {
-            ans.push_back(temp);
+            ans.push_back(nums);
             return;
         }
-        for(int i=0;i<nums.size();i++)
+        for(int i=ind;i<nums.size();i++)
         {
-            if(mp.find(nums[i]) == mp.end())
-            {
-                mp[nums[i]]++;
-                temp.push_back(nums[i]);
-                helper(nums,ans,temp,mp);
-                temp.pop_back();
-                mp.erase(nums[i]);
-            }
-            //mp[nums[i]]++;
+            swap(nums[ind],nums[i]);
+            helper(nums,ans,ind+1);
+            swap(nums[ind],nums[i]);
         }
         
     }
@@ -29,7 +23,7 @@ public:
         vector<vector<int>>ans;
         vector<int>temp;
         map<int,int>mp;
-        helper(nums,ans,temp,mp);
+        helper(nums,ans,0);
         return ans;
     }
 };
