@@ -12,27 +12,26 @@
 class Solution {
 public:
     
-    void helper(TreeNode*root,int k,int& cnt,int& ans)
+    void helper(TreeNode*root,int& k,int& ans)
     {
         if(root == NULL){
             //cnt++;
             return;
         }
         
-        helper(root->left,k,cnt,ans);
-       cnt++;
-        if(cnt == k){
+        helper(root->left,k,ans);
+        k--;
+        if(k == 0){
             ans = root->val;
             
         }
-        helper(root->right,k,cnt,ans);
+        helper(root->right,k,ans);
     }
     
     
     int kthSmallest(TreeNode* root, int k) {
         int ans = 0;
-        int cnt = 0;
-        helper(root,k,cnt,ans);
+        helper(root,k,ans);
         return ans;
     }
 };
