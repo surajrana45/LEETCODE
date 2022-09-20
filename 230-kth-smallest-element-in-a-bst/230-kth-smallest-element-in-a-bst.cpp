@@ -15,12 +15,12 @@ public:
     void helper(TreeNode*root,int k,int& cnt,int& ans)
     {
         if(root == NULL){
-            cnt++;
+            //cnt++;
             return;
         }
         
         helper(root->left,k,cnt,ans);
-
+       cnt++;
         if(cnt == k){
             ans = root->val;
             
