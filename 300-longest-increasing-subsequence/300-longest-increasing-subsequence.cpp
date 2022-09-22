@@ -14,9 +14,11 @@ public:
             {
                 if(v[j]>=v[i])
                     continue;
-                maxi = max(ans[j],maxi);
+                int maxi = ans[j]+1;
+                if(maxi>ans[i])
+                    ans[i] = maxi;
             }
-            ans[i] += maxi;
+           // ans[i] += maxi;
         }
         int best = 0;
         for(int i=0;i<ans.size();i++)
