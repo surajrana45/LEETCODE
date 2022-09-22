@@ -4,9 +4,9 @@ public:
         
         int i = 0;
         int j = 0;
-        while(j<s.length())
+        while(j<=s.length())
         {
-            if(s[j] == ' ')
+            if(s[j] == ' ' || s[j] == '\0')
             {
                 int k = j-1;
                 while(i<k)
@@ -21,14 +21,6 @@ public:
             else{
                 j++;
             }
-        }
-        j--;
-        while(i<j)
-        {
-            swap(s[i],s[j]);
-            i++;
-            j--;
-                
         }
         return s;
     }
