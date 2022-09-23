@@ -1,35 +1,33 @@
 class Solution {
 public:
     
-    void mark(vector<vector<char>>&grid,int x,int y,int r,int c)
+    void helper(vector<vector<char>>&grid,int i,int j,int n,int m)
     {
-        if(x<0 || x>=r || y<0 || y>=c || grid[x][y] != '1')
+        if(i>=n || i<0 || j>=m || j<0 || grid[i][j] == '0')
             return;
         
-        grid[x][y] = '2';
-        
-        mark(grid,x,y+1,r,c);
-        mark(grid,x,y-1,r,c);
-        mark(grid,x-1,y,r,c);
-        mark(grid,x+1,y,r,c);
+        grid[i][j] = '0';
+        helper(grid,i,j+1,n,m);
+        helper(grid,i,j-1,n,m);
+        helper(grid,i-1,j,n,m);
+        helper(grid,i+1,j,n,m);
     }
     
-    
     int numIslands(vector<vector<char>>& grid) {
-       
-        int ans = 0;
         
-        for(int i =0;i<grid.size();i++)
+        int n = grid.size();
+        int cnt = 0;
+        for(int i=0;i<grid.size();i++)
         {
-            for(int j =0;j<grid[0].size();j++)
+            for(int j=0;j<grid[i].size();j++)
             {
                 if(grid[i][j] == '1')
                 {
-                    mark(grid,i,j,grid.size(),grid[0].size());
-                    ans++;
+                    cnt++;
+                    helper(grid,i,j,n,grid[i].size());
                 }
             }
         }
-        return ans;
+        return cnt;
     }
 };
