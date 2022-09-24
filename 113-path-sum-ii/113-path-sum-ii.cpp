@@ -11,35 +11,36 @@
  */
 class Solution {
 public:
-     vector<int>v1;
-    void pathsumHelp(TreeNode*root,int tsum,vector<vector<int>>&res,vector<int>v)
+    
+    void helper(TreeNode*root,int target,vector<vector<int>>&ans,vector<int>temp)
     {
-        if(root==NULL)
-            return;
+        // if(target<0)
+        //     return;
         
-        v.push_back(root->val);
-        tsum = tsum-v[v.size()-1];
+       if(root == NULL)
+           return;
         
-        if(tsum==0 && !root->left && !root->right)
+        if(target-root->val == 0 && root->left == NULL && root->right ==NULL)
         {
-            res.push_back(v);
+            temp.push_back(root->val);
+            ans.push_back(temp);
             return;
         }
+        temp.push_back(root->val);
+        helper(root->left,target-root->val,ans,temp);
         
-        pathsumHelp(root->left,tsum,res,v);
-        pathsumHelp(root->right,tsum,res,v);
+        helper(root->right,target-root->val,ans,temp);
+        temp.pop_back();
+       
         
-        v.pop_back();
     }
     
     
-    
-    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-    
-        vector<int>v;
-        vector<vector<int>>res;
-        pathsumHelp(root,targetSum,res,v);
-        return res;
+    vector<vector<int>> pathSum(TreeNode* root, int target) {
+        vector<vector<int>>ans;
+        vector<int>temp;
         
+        helper(root,target,ans,temp);
+        return ans;
     }
 };
