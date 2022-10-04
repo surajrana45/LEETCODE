@@ -2,6 +2,11 @@ class Solution {
 public:
     int helper(vector<vector<int>>&matrix,int n,int i,int j,vector<vector<int>>&v)
     {
+       if(j>=n || j<0)
+        {
+            return INT_MAX;
+        }
+        
        if(i == n-1)
            return matrix[i][j];
         
@@ -9,20 +14,10 @@ public:
         if(v[i][j]!=-1)
             return v[i][j];
         
-       
-         int bottom = INT_MAX;
-         int left = INT_MAX;
-         int right = INT_MAX;
+        int bottom = helper(matrix,n,i+1,j,v);
+        int left = helper(matrix,n,i+1,j-1,v);
+        int right = helper(matrix,n,i+1,j+1,v);
         
-        if(j+1<n)
-        {
-            right = helper(matrix,n,i+1,j+1,v);
-        }
-        if(j-1>=0)
-        {
-          left = helper(matrix,n,i+1,j-1,v);
-        }
-        bottom = helper(matrix,n,i+1,j,v);
         
         v[i][j] =matrix[i][j] + min(bottom,min(left,right));
         return v[i][j];
