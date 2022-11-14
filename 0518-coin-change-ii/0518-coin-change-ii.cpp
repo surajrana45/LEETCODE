@@ -21,7 +21,25 @@ public:
     
     int change(int amount, vector<int>& coins) {
        
-        vector<vector<int>>dp(coins.size(),vector<int>(amount+1,-1));
-        return helper(coins,amount,coins.size()-1,dp);
+        vector<vector<int>>dp(coins.size(),vector<int>(amount+1,0));
+        for(int t=0;t<=amount;t++)
+        {
+            if(t%coins[0]==0) dp[0][t] = 1;
+            else dp[0][t] = 0;
+        }
+        for(int ind = 1;ind<coins.size();ind++)
+        {
+            for(int t=0;t<=amount;t++)
+            {
+                int nottake = dp[ind-1][t];
+                int take=0;
+                if(t>=coins[ind])
+                 {
+                   take=dp[ind][t-coins[ind]];
+                 }
+               dp[ind][t] = take+nottake; 
+            }
+        }
+        return dp[coins.size()-1][amount];
     }
 };
