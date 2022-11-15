@@ -28,7 +28,28 @@ public:
     
     int countNodes(TreeNode* root) {
         int sum=0;
-        helper(root,sum);
+       // helper(root,sum);
+        if(root==NULL)
+            return 0;
+        queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty())
+        {
+            TreeNode*temp = q.front();
+            q.pop();
+            sum++;
+            
+            if(temp->left)
+            {
+                q.push(temp->left);
+            }
+            if(temp->right)
+            {
+                q.push(temp->right);
+            }
+            
+        }
+        
         return sum;
     }
 };
