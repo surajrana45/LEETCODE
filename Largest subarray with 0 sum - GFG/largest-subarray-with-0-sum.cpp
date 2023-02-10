@@ -11,20 +11,27 @@ using namespace std;
 class Solution{
     public:
     int maxLen(vector<int>&arr, int n)
-    {   int maxi=0;
-        unordered_map<int,int>mp;
+    {  
+        int maxi=0;
+        map<int,int>mp;
         int sum=0;
-        for(int i=0;i<arr.size();i++)
+        //mp[0]=0;
+        for(int i=0;i<n;i++)
         {
-         sum+=arr[i];
-         if(sum==0) maxi = max(maxi,i+1);
-         if(mp.find(sum)!=mp.end())
-         {
-             maxi = max(maxi,i-mp[sum]);
-         }
-         else{
-             mp[sum]=i;
-         }
+            sum+=arr[i];
+            if(sum!=0){
+            if(mp.find(sum)!=mp.end())
+            {
+                int temp = i-mp[sum];
+                maxi = max(temp,maxi);
+            }
+            else{
+                mp[sum] = i;
+            }
+            }
+            else{
+                maxi = max(maxi,i+1);
+            }
         }
         return maxi;
     }
