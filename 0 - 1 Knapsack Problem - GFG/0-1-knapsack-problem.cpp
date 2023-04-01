@@ -16,7 +16,7 @@ class Solution
             return 0;
         }
         
-        if(dp[w][ind]!=-1) return dp[w][ind];
+        if(dp[ind][w]!=-1) return dp[ind][w];
         
         int pick=0;
         int npick=0;
@@ -26,12 +26,12 @@ class Solution
         }
         npick = helper(w,wt,val,n,ind+1,dp);
         
-        return dp[w][ind] = max(pick,npick);
+        return dp[ind][w] = max(pick,npick);
     }
     
     int knapSack(int W, int wt[], int val[], int n) 
     { 
-       vector<vector<int>>dp(W+1,vector<int>(n,-1));    
+       vector<vector<int>>dp(n,vector<int>(W+1,-1));    
        return helper(W,wt,val,n,0,dp);
     }
 };
